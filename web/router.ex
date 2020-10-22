@@ -22,6 +22,15 @@ defmodule Discuss.Router do
     get "/topics/:id/edit", TopicController, :edit
     put "/topics/:id", TopicController, :update
     delete "/topics/:id", TopicController, :delete
+    #ou
+    #resources "/", TopicController
+  end
+
+  scope "/auth", Discuss do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request #defined by ueberauth
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.
