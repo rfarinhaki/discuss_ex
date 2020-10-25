@@ -5,7 +5,7 @@ defmodule Discuss.TopicController do
 
 
   def index(conn, _params) do
-    topics = Repo.all(Topic)
+    topics = Repo.all(from t in Topic, order_by: t.id)
 
     render conn, "index.html", topics: topics
   end
